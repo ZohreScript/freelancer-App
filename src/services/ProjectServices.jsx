@@ -16,3 +16,17 @@ export function createProjectApi(data) {
       .patch(`/project/update/${id}`, newProject)
       .then(({ data }) => data.data);
   }
+  export function toggleProjectStatusApi({ id, data }) {
+    //{status:"OPEN"}
+    return http.patch(`/project/${id}`, data).then(({ data }) => data.data);
+  }
+  
+  export function getProjectApi(id) {
+    //{status:"OPEN"}
+    return http.get(`/project/${id}`).then(({ data }) => data.data);
+  }
+  
+  export function geProjectsApi(qs) {
+    return http.get(`/project/list${qs}`).then(({ data }) => data.data);
+  }
+  

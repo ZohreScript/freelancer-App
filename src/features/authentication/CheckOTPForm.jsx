@@ -32,7 +32,7 @@ function CheckOTPForm({ phonenumber, onBack ,onResendOTP,otpResponse}) {
       if (user.isActive) {
         if (user.role === "OWNER") navigate("/owner");
         if (user.role === "FREELANSER") navigate("/freelancer")
-    
+        if (user.role === "ADMIN") navigate("/admin")
       }
     }
     catch (error) {

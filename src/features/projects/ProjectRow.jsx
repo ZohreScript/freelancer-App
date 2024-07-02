@@ -3,11 +3,12 @@ import Table from '../../ui/Table'
 import truncateText from '../../utils/truncateText'
 import { toPersianNumbersWithComma } from '../../utils/toPersianNumbers'
 import toLocalDateShort from '../../utils/toLocalDateShort'
-import { HiOutlineTrash } from 'react-icons/hi'
+import { HiEye, HiOutlineTrash } from 'react-icons/hi'
 import { TbPencilMinus } from 'react-icons/tb'
 import Modal from '../../ui/Modal'
 import ConfirmDelete from '../../ui/ConfirmDelete'
 import useRemoveProject from './useRemoveProject'
+import ToggleProjectStatus from './ToggleProjectStatus'
 
 function ProjectRow({ project, index }) {
     const [isEditOpen, setIsEditOpen] = useState(false);
@@ -30,9 +31,12 @@ function ProjectRow({ project, index }) {
             </td>
             <td>{project.freelancer?.name || "-"}</td>
             <td>
+            <ToggleProjectStatus project={project} />
+            {/*                 
                 {project.status === "OPEN" ? (
                     <span className='badge badge--success'>باز</span>
                 ) : (<span className='badge badge--danger' >بسته</span>)}
+           */}
             </td>
             <td>
                 <div className='flex items-center gap-x-4'>
@@ -46,7 +50,10 @@ function ProjectRow({ project, index }) {
                             open={isEditOpen}
                             onClose={() => setIsEditOpen(false)}
                         >
-                            this is modal...
+                            <CreateProjectForm
+                projectToEdit={project}
+                onClose={() => setIsEditOpen(false)}
+              />
                         </Modal>
                     </>
 
@@ -72,6 +79,11 @@ function ProjectRow({ project, index }) {
                     </>
                 </div>
             </td>
+            <td>
+        <Link to={project._id} className="flex justify-center">
+          <HiEye className="w-5 h-5 text-primary-800" />
+        </Link>
+      </td>
         </Table.Row>)
 }
 

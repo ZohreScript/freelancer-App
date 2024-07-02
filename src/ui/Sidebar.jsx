@@ -2,11 +2,12 @@ import React, { Children } from 'react'
 import { HiCollection, HiHome } from 'react-icons/hi'
 import { NavLink } from 'react-router-dom'
 
-function Sidebar() {
+function Sidebar({children}) {
     return (
         <div className='bg-secondary-0 row-start-1 row-span-2 border border-secondary-200 ' >
             <ul className='flex flex-col gap-y-4'>
-                <li>
+                {children}
+                {/* <li>
                     <CustomNavLink to="/owner/dashboard" >
                         <HiHome /><span>خانه</span>
                     </CustomNavLink>
@@ -15,7 +16,7 @@ function Sidebar() {
                     <CustomNavLink to="/owner/projects" >
                         <HiCollection /><span>پروژه ها</span>
                     </CustomNavLink>
-                </li>
+                </li> */}
             </ul>
         </div>
     )
